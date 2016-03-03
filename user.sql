@@ -24,7 +24,7 @@ CREATE TABLE FOOTWEAR_SELECTION_DETAILS
     FootwearSelectionId INTEGER PRIMARY KEY NOT NULL,
     FootwearDesignDetailsFk INTEGER NOT NULL,
     Selection VARCHAR(30) NOT NULL,
-    Picture BLOB NOT NULL,
+    Picture BLOB,
     FOREIGN KEY(FootwearDesignDetailsFk) REFERENCES FOOTWEAR_DESIGN_DETAILS(FootwearDesignId)
 );
 
@@ -51,12 +51,16 @@ CREATE TABLE BARCODE_DETAILS
 -- this is where the “available for checkout” count is calculated
 -- Primarily used by the inventory robot and the tablet application
 
+-- x and y indecies starts from 0
 CREATE TABLE INVENTORY_INFO
 (
     InventoryDetailsId INTEGER PRIMARY KEY NOT NULL,
     BarcodeDetailsFk INTEGER NOT NULL,
     X_index INTEGER NOT NULL,
     Y_index INTEGER NOT NULL,
+    X_encoder INTEGER NOT NULL,
+    Y_encoder INTEGER NOT NULL,
+    CheckoutFlag INTEGER NOT NULL,
     FOREIGN KEY(BarcodeDetailsFk) REFERENCES BARCODE_DETAILS(BarcodeId)
 );
 
@@ -80,6 +84,7 @@ CREATE TABLE VIRTUAL_CART
     CustomerInfoFk INTEGER NOT NULL,
     BarcodeDetailsFk INTEGER NOT NULL,
     NumCheckedOut INTEGER NOT NULL,
+    NumItemAvailableForPickup INTEGER NOT NULL,
     FOREIGN KEY(CustomerInfoFk) REFERENCES CUSTOMER_INFO(CustomerInfoId),
     FOREIGN KEY(BarcodeDetailsFk) REFERENCES BARCODE_DETAILS(BarcodeId)
 );
