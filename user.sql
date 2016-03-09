@@ -51,6 +51,7 @@ CREATE TABLE BARCODE_DETAILS
 -- this is where the “available for checkout” count is calculated
 -- Primarily used by the inventory robot and the tablet application
 
+-- x and y indecies starts from 0
 CREATE TABLE INVENTORY_INFO
 (
     InventoryDetailsId INTEGER PRIMARY KEY NOT NULL,
@@ -59,7 +60,7 @@ CREATE TABLE INVENTORY_INFO
     Y_index INTEGER NOT NULL,
     X_encoder INTEGER NOT NULL,
     Y_encoder INTEGER NOT NULL,
-    CheckoutFlag INteger NOT NULL,
+    CheckoutFlag INTEGER NOT NULL,
     FOREIGN KEY(BarcodeDetailsFk) REFERENCES BARCODE_DETAILS(BarcodeId)
 );
 
