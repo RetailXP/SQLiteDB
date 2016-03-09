@@ -24,7 +24,7 @@ CREATE TABLE FOOTWEAR_SELECTION_DETAILS
     FootwearSelectionId INTEGER PRIMARY KEY NOT NULL,
     FootwearDesignDetailsFk INTEGER NOT NULL,
     Selection VARCHAR(30) NOT NULL,
-    Picture BLOB NOT NULL,
+    Picture BLOB,
     FOREIGN KEY(FootwearDesignDetailsFk) REFERENCES FOOTWEAR_DESIGN_DETAILS(FootwearDesignId)
 );
 
@@ -57,6 +57,9 @@ CREATE TABLE INVENTORY_INFO
     BarcodeDetailsFk INTEGER NOT NULL,
     X_index INTEGER NOT NULL,
     Y_index INTEGER NOT NULL,
+    X_encoder INTEGER NOT NULL,
+    Y_encoder INTEGER NOT NULL,
+    CheckoutFlag INteger NOT NULL,
     FOREIGN KEY(BarcodeDetailsFk) REFERENCES BARCODE_DETAILS(BarcodeId)
 );
 
@@ -80,6 +83,7 @@ CREATE TABLE VIRTUAL_CART
     CustomerInfoFk INTEGER NOT NULL,
     BarcodeDetailsFk INTEGER NOT NULL,
     NumCheckedOut INTEGER NOT NULL,
+    NumItemAvailableForPickup INTEGER NOT NULL,
     FOREIGN KEY(CustomerInfoFk) REFERENCES CUSTOMER_INFO(CustomerInfoId),
     FOREIGN KEY(BarcodeDetailsFk) REFERENCES BARCODE_DETAILS(BarcodeId)
 );
